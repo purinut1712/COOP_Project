@@ -1,0 +1,10 @@
+1. ไปที่ folder canteenq
+2. cd เข้าไปที่ backend 
+    2.0 npm install sequelize tedious
+    2.1 รันคำสั่ง npm install
+    2.2 รันคำสั่ง node server.js
+3. cd เข้าไปที่ frontend
+    3.1 รันคำสั่ง npm install
+    3.2 รันคำสั่ง npm run dev
+4. เปิดเว็บเบราว์เซอร์ไปที่ http://localhost:5173/
+5. เสร็จสิ้น
