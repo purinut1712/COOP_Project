@@ -6,7 +6,7 @@ const sequelize = new Sequelize('CanteenDB', 'sa', 'SQL_2003', {
   port: 1433,
   dialectOptions: {
     options: {
-      encrypt: true, // สำหรับ Azure VM ควรตั้งเป็น true
+      encrypt: true, 
       trustServerCertificate: true // เพื่อข้ามการเช็ค SSL certificate ของตัวเครื่อง VM
     }
   },
