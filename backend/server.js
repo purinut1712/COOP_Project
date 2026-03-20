@@ -11,7 +11,7 @@ const app = express();
 
 // --- 1. Middleware (ต้องเรียงลำดับแบบนี้เป๊ะๆ) ---
 app.use(cors({
-  origin: 'http://localhost:5173', // อนุญาตเฉพาะหน้าเว็บ Vite ของคุณ
+  origin: ['http://localhost:5173','http://20.24.17.205'], // อนุญาตเฉพาะหน้าเว็บ Vite ของคุณ
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
@@ -29,50 +29,15 @@ app.use('/api/orders', ordersRouter);
 // --- 3. API สำหรับ Orders (เพิ่มต่อจากตรงนี้) ---
 
 // ดึง Order ทั้งหมด
-app.get('/api/orders', async (req, res) => {
-  try {
-    const orders = await Order.findAll({
-      include: [{ model: OrderItem, as: 'items' }],
-      order: [['createdAt', 'DESC']]
-    });
-    res.json(orders);
-  } catch (err) {
-    console.error('Fetch Orders Error:', err);
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// สร้าง Order ใหม่ (มี Transaction ป้องกันข้อมูลค้าง)
-// app.post('/api/orders', async (req, res) => {
-//   const t = await sequelize.transaction();
+// app.get('/api/orders', async (req, res) => {
 //   try {
-//     const { items, userId } = req.body;
-//     const order = await Order.create({ userId, status: 'รอทำ' }, { transaction: t });
-    
-//     const itemsWithId = items.map(item => ({
-//       ...item,
-//       orderId: order.id
-//     }));
-    
-//     await OrderItem.bulkCreate(itemsWithId, { transaction: t });
-//     await t.commit();
-//     res.json(order);
-//   } catch (err) {
-//     await t.rollback();
-//     console.error('Create Order Error:', err);
-//     res.status(500).json({ message: err.message });
-//   }
-// });
-
-// // อัปเดตสถานะ Order
-// app.put('/api/orders/:id/status', async (req, res) => {
-//   try {
-//     await Order.update({ status: req.body.status }, {
-//       where: { id: req.params.id }
+//     const orders = await Order.findAll({
+//       include: [{ model: OrderItem, as: 'items' }],
+//       order: [['createdAt', 'DESC']]
 //     });
-//     res.json({ message: 'Updated successfully' });
+//     res.json(orders);
 //   } catch (err) {
-//     console.error('Update Status Error:', err);
+//     console.error('Fetch Orders Error:', err);
 //     res.status(500).json({ message: err.message });
 //   }
 // });
