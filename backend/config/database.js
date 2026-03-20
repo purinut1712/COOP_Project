@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('CanteenDB', 'sa', 'SQL_2003', {
-  host: '4.193.94.224', // <-- วาง Public IP ของ Azure ตรงนี้
+  host: '10.0.0.4', // <-- วาง Public IP ของ Azure ตรงนี้
   dialect: 'mssql',
   port: 1433,
   dialectOptions: {
