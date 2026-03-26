@@ -1,16 +1,22 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('CanteenDB', 'sa', 'SQL_2003', {
-  host: '10.0.0.4', // <-- วาง Public IP ของ Azure ตรงนี้
-  dialect: 'mssql',
-  port: 1433,
-  dialectOptions: {
-    options: {
-      encrypt: true, 
-      trustServerCertificate: true // เพื่อข้ามการเช็ค SSL certificate ของตัวเครื่อง VM
-    }
-  },
-  logging: false // ปิด log query ยาวๆ ใน console (ถ้าต้องการดูให้เปลี่ยนเป็น true)
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME, 
+  process.env.DB_USER, 
+  process.env.DB_PASSWORD, 
+  {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+    port: process.env.DB_PORT,
+    dialectOptions: {
+      options: {
+        encrypt: true,
+        trustServerCertificate: true
+      }
+    },
+    logging: false
+  }
+);
 
 module.exports = sequelize;
