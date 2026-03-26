@@ -18,7 +18,7 @@ export default function Register() {
     }
 
     try {
-      await api.post('/api/auth/register', { username, password, role });
+      await api.post('/auth/register', { username, password, role });
       setToastMessage('สมัครสมาชิกสำเร็จ! กำลังไปหน้าเข้าสู่ระบบ...');
 
       setTimeout(() => {

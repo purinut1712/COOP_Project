@@ -17,7 +17,7 @@ export default function Login({ setRole }) {
     }
 
     try {
-      const res = await api.post('/api/auth/login', { username, password });
+      const res = await api.post('/auth/login', { username, password });
       
       const userRole = res.data.role;
       // ✅ จุดที่แก้ไข: ดึง userId มาจาก response (เป็น _id)
